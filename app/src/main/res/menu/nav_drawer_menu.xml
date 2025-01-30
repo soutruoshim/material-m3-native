@@ -1,57 +1,43 @@
-<?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
 
     <item
         android:checkable="true"
         android:id="@+id/nav_menu_home"
         android:icon="@drawable/ic_menu_home"
-        android:title="Home" />
+        android:title="@string/menu_home" />
 
     <item
         android:checkable="true"
         android:id="@+id/nav_menu_explore"
         android:icon="@drawable/ic_menu_explore"
-        android:title="Explore" />
+        android:title="@string/menu_explore" />
 
     <item
         android:checkable="true"
         android:id="@+id/nav_menu_subscription"
         android:icon="@drawable/ic_menu_subscription"
-        android:title="Subscriptions" />
+        android:title="@string/menu_subscription" />
 
     <item
         android:checkable="true"
         android:id="@+id/nav_menu_video_library"
         android:icon="@drawable/ic_menu_video_library"
-        android:title="Video Library" />
+        android:title="@string/menu_video_library" />
 
     <item
-        android:title="Other Options"
-        >
+        android:title="@string/menu_other_options">
         <menu>
             <item
                 android:checkable="true"
                 android:id="@+id/nav_menu_account"
                 android:icon="@drawable/ic_menu_account"
-                android:title="My Account" />
+                android:title="@string/menu_account" />
 
             <item
                 android:checkable="true"
                 android:id="@+id/nav_menu_settings"
                 android:icon="@drawable/ic_menu_settings"
-                android:title="Settings" />
+                android:title="@string/menu_settings" />
         </menu>
     </item>
 </menu>
-
-
-
-
-
-
-
-
-
-
-
-

@@ -1,5 +1,6 @@
 <resources>
     <string name="app_name">Brown Coffee</string>
+
     <string name="action_settings">Settings</string>
     <!-- Strings used for fragments for navigation -->
     <string name="first_fragment_label">First Fragment</string>
@@ -45,4 +46,13 @@
     </string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="language">Language</string>
+    <string name="change_language">Change Language</string>
+    <string name="menu_home">Home</string>
+    <string name="menu_explore">Explore</string>
+    <string name="menu_subscription">Subscriptions</string>
+    <string name="menu_video_library">Video Library</string>
+    <string name="menu_other_options">Other Options</string>
+    <string name="menu_account">My Account</string>
+    <string name="menu_settings">Settings</string>
 </resources>

@@ -13,5 +13,6 @@
         android:layout_height="wrap_content"
         android:textSize="18sp"
         android:padding="10dp"
+        android:textColor="?attr/colorSecondary"
         android:textStyle="bold"/>
 </FrameLayout>

@@ -1,11 +1,17 @@
 package com.example.material3navigationdrawer
 
+
+import android.content.Context
 import android.content.SharedPreferences
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import android.widget.Switch
+import androidx.activity.OnBackPressedCallback
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.app.AppCompatDelegate
+import androidx.appcompat.widget.Toolbar
+import androidx.core.content.ContextCompat
 import androidx.drawerlayout.widget.DrawerLayout
 import androidx.navigation.NavController
 import androidx.navigation.fragment.NavHostFragment
@@ -13,12 +19,12 @@ import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.NavigationUI
 import androidx.navigation.ui.navigateUp
 import androidx.navigation.ui.setupActionBarWithNavController
-import androidx.recyclerview.widget.GridLayoutManager
-import androidx.recyclerview.widget.GridLayoutManager.SpanSizeLookup
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.material3navigationdrawer.databinding.ActivityMainBinding
+import com.example.material3navigationdrawer.utils.LocaleHelper
 import com.google.android.material.navigation.NavigationView
+import com.google.android.material.search.SearchView
 
 
 class MainActivity : AppCompatActivity() {
@@ -68,7 +74,11 @@ class MainActivity : AppCompatActivity() {
                         navController.navigate(R.id.action_homeFragment_to_detailFragment)
                         searchBar.visibility = View.GONE // Hide SearchBar in Second Fragment
 
-                    }else -> {
+                    } R.id.nav_menu_settings -> {
+                        navController.navigate(R.id.action_homeFragment_to_settingFragment)
+                        //searchBar.visibility = View.GONE // Hide SearchBar in Second Fragment
+                    }
+                    else -> {
                       // Show CoordinatorLayout for other fragments
                       searchBar.visibility = View.VISIBLE
                     }
@@ -140,7 +150,36 @@ class MainActivity : AppCompatActivity() {
 //        gridLayoutManager.spanSizeLookup = sizeLookup
 //        recyclerView.layoutManager = gridLayoutManager
 
-        recyclerView.setAdapter(MyAdapter(data));
+         recyclerView.setAdapter(MyAdapter(data));
+
+//        binding.searchView.toolbar.navigationIcon?.setAutoMirrored(true)
+//        binding.searchView.layoutDirection = View.LAYOUT_DIRECTION_LOCALE
+
+        val isRtl = resources.configuration.layoutDirection == View.LAYOUT_DIRECTION_RTL
+
+        if(isRtl){
+            val searchView = findViewById<SearchView>(R.id.search_view)
+            searchView.toolbar.setNavigationIcon(R.drawable.ic_forward)
+            Log.d("MYTAG", "Set View");
+        }
+
+        val callback = object : OnBackPressedCallback(true) {
+            override fun handleOnBackPressed() {
+                Log.d("BackPress", "handleOnBackPressed called. isShowing: ${binding.searchView.isShowing}")
+                if (binding.searchView.isShowing) {
+                    Log.d("BackPress", "Hiding search view")
+                    binding.searchView.hide()
+                } else {
+                    Log.d("BackPress", "Default back press")
+                    isEnabled = false
+                    onBackPressedDispatcher.onBackPressed()
+                    isEnabled = true
+                }
+            }
+        }
+        onBackPressedDispatcher.addCallback(this, callback)
+
+
     }
 
     private fun fetchRowData(): ArrayList<Any> {
@@ -168,4 +207,10 @@ class MainActivity : AppCompatActivity() {
     override fun onSupportNavigateUp(): Boolean {
         return navController.navigateUp(appBarConfiguration) || super.onSupportNavigateUp()
     }
+    override fun attachBaseContext(newBase: Context) {
+        super.attachBaseContext(LocaleHelper.setLocale(newBase, LocaleHelper.getLanguage(newBase)))
+
+
+    }
+
 }

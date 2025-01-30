@@ -4,12 +4,12 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:background="?attr/colorSurfaceContainer"
-    android:gravity="left"
+    android:gravity="start"
     android:orientation="vertical"
     android:paddingTop="?attr/actionBarSize"
     android:paddingBottom="24dp"
-    android:paddingLeft="24dp"
-    android:paddingRight="24dp">
+    android:paddingStart="24dp"
+    android:paddingEnd="24dp">
 
     <!-- Profile Image -->
     <ImageView
@@ -37,7 +37,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="4dp"
-        android:text="Mark you mark"
+        android:text="Mark your mark"
         android:textAppearance="?attr/textAppearanceBody2"
         android:textColor="?attr/colorOnSurface" />
 
