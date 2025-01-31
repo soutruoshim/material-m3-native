@@ -7,10 +7,12 @@ import android.os.Bundle
 import android.util.Log
 import android.view.View
 import android.widget.Switch
+import android.widget.Toast
 import android.widget.Toolbar
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.app.AppCompatDelegate
 import androidx.core.view.ViewCompat
+import androidx.core.widget.addTextChangedListener
 import androidx.drawerlayout.widget.DrawerLayout
 import androidx.navigation.NavController
 import androidx.navigation.fragment.NavHostFragment
@@ -160,6 +162,33 @@ class MainActivity : AppCompatActivity() {
 
         }
 
+
+        setupSearchView()
+    }
+    private fun setupSearchView() {
+        binding.apply {
+            // Listen for real-time text changes
+            searchView.editText.addTextChangedListener { editable ->
+                val queryText = editable.toString()
+
+                // Update the search bar text in real time (optional)
+                searchBar.setText(queryText)
+                // Perform your action, e.g., filtering a list, showing suggestions
+                Toast.makeText(applicationContext, "Query: $queryText", Toast.LENGTH_SHORT).show()
+            }
+
+            // Listen for the Enter key press (finalized search)
+            searchView.editText.setOnEditorActionListener { textView, actionId, keyEvent ->
+                val queryText = textView.text.toString()
+                searchBar.setText(queryText)
+
+                Toast.makeText(applicationContext, "You Entered: $queryText", Toast.LENGTH_LONG).show()
+
+                // Hide the SearchView
+                searchView.hide()
+                return@setOnEditorActionListener false
+            }
+        }
     }
 
     private fun fetchRowData(): ArrayList<Any> {
