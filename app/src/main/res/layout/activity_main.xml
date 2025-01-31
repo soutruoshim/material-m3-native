@@ -10,7 +10,6 @@
     <androidx.coordinatorlayout.widget.CoordinatorLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layoutDirection="rtl"
         >
         <!-- AppBarLayout -->
         <com.google.android.material.appbar.AppBarLayout
@@ -38,15 +37,8 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             app:layout_anchor="@id/search_bar"
-            app:navigationIcon="@drawable/ic_back"
+            app:useDrawerArrowDrawable="true"
             android:hint="Search here">
-<!--         RecyclerView for Search Results -->
-<!--            <androidx.recyclerview.widget.RecyclerView-->
-<!--                android:id="@+id/results_recycler_view"-->
-<!--                android:layout_width="match_parent"-->
-<!--                android:layout_height="match_parent"-->
-<!--                android:clipToPadding="false"-->
-<!--                android:padding="8dp" />-->
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/recyclerView"
                 android:layout_width="match_parent"

@@ -7,11 +7,10 @@ import android.os.Bundle
 import android.util.Log
 import android.view.View
 import android.widget.Switch
-import androidx.activity.OnBackPressedCallback
+import android.widget.Toolbar
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.app.AppCompatDelegate
-import androidx.appcompat.widget.Toolbar
-import androidx.core.content.ContextCompat
+import androidx.core.view.ViewCompat
 import androidx.drawerlayout.widget.DrawerLayout
 import androidx.navigation.NavController
 import androidx.navigation.fragment.NavHostFragment
@@ -25,7 +24,6 @@ import com.example.material3navigationdrawer.databinding.ActivityMainBinding
 import com.example.material3navigationdrawer.utils.LocaleHelper
 import com.google.android.material.navigation.NavigationView
 import com.google.android.material.search.SearchView
-
 
 class MainActivity : AppCompatActivity() {
 
@@ -134,7 +132,7 @@ class MainActivity : AppCompatActivity() {
         // for List with header
         recyclerView.layoutManager = LinearLayoutManager(this)
 
-        // for Grid with header
+//        for Grid with header
 //        val spanCount = 3
 //        val gridLayoutManager = GridLayoutManager(this, spanCount)
 //        val sizeLookup: SpanSizeLookup = object : SpanSizeLookup() {
@@ -158,27 +156,9 @@ class MainActivity : AppCompatActivity() {
         val isRtl = resources.configuration.layoutDirection == View.LAYOUT_DIRECTION_RTL
 
         if(isRtl){
-            val searchView = findViewById<SearchView>(R.id.search_view)
-            searchView.toolbar.setNavigationIcon(R.drawable.ic_forward)
             Log.d("MYTAG", "Set View");
-        }
 
-        val callback = object : OnBackPressedCallback(true) {
-            override fun handleOnBackPressed() {
-                Log.d("BackPress", "handleOnBackPressed called. isShowing: ${binding.searchView.isShowing}")
-                if (binding.searchView.isShowing) {
-                    Log.d("BackPress", "Hiding search view")
-                    binding.searchView.hide()
-                } else {
-                    Log.d("BackPress", "Default back press")
-                    isEnabled = false
-                    onBackPressedDispatcher.onBackPressed()
-                    isEnabled = true
-                }
-            }
         }
-        onBackPressedDispatcher.addCallback(this, callback)
-
 
     }
 
